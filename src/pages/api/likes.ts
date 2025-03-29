@@ -1,10 +1,9 @@
 import type { APIRoute } from 'astro';
 import clientPromise from '../../mongodb';
-import { ObjectId } from 'mongodb';
 import 'dotenv/config';
 
 interface LikesDocument {
-  _id: ObjectId;
+  _id: string;
   likes: number;
 }
 
@@ -16,7 +15,7 @@ export const GET: APIRoute = async () => {
     const db = client.db("portfolio");
     const likesCollection = db.collection<LikesDocument>("likes");
     
-    const likesDoc = await likesCollection.findOne({ _id: new ObjectId("counter") });
+    const likesDoc = await likesCollection.findOne({ _id: "counter" });
     const likes = likesDoc ? likesDoc.likes : 0;
     
     return new Response(JSON.stringify({ likes }), {
@@ -28,6 +27,13 @@ export const GET: APIRoute = async () => {
     });
   } catch (error) {
     console.error('Error in GET /api/likes:', error);
+    if (error instanceof Error) {
+      console.error('Error details:', {
+        message: error.message,
+        stack: error.stack,
+        name: error.name
+      });
+    }
     return new Response(JSON.stringify({ error: 'Failed to fetch likes' }), {
       status: 500,
       headers: {
@@ -45,7 +51,7 @@ export const POST: APIRoute = async () => {
     const likesCollection = db.collection<LikesDocument>("likes");
     
     const result = await likesCollection.updateOne(
-      { _id: new ObjectId("counter") },
+      { _id: "counter" },
       { $inc: { likes: 1 } },
       { upsert: true }
     );
@@ -59,6 +65,13 @@ export const POST: APIRoute = async () => {
     });
   } catch (error) {
     console.error('Error in POST /api/likes:', error);
+    if (error instanceof Error) {
+      console.error('Error details:', {
+        message: error.message,
+        stack: error.stack,
+        name: error.name
+      });
+    }
     return new Response(JSON.stringify({ error: 'Failed to update likes' }), {
       status: 500,
       headers: {

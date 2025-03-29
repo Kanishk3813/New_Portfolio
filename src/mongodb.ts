@@ -5,6 +5,9 @@ const options = {
   maxPoolSize: 10,
   serverSelectionTimeoutMS: 5000,
   socketTimeoutMS: 45000,
+  connectTimeoutMS: 10000,
+  retryWrites: true,
+  retryReads: true,
 };
 
 let client;
@@ -27,5 +30,10 @@ if (process.env.NODE_ENV === 'development') {
   client = new MongoClient(uri, options);
   clientPromise = client.connect();
 }
+
+// Add error handling for the connection
+clientPromise.catch((error) => {
+  console.error('MongoDB connection error:', error);
+});
 
 export default clientPromise; 
