@@ -9,7 +9,7 @@ const LikeButton = () => {
   const [isProcessing, setIsProcessing] = useState(false);
 
   // Get the base URL for API calls
-  const baseUrl = import.meta.env.PROD ? 'https://your-vercel-domain.vercel.app' : '';
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
 
   useEffect(() => {
     setIsClient(true);
