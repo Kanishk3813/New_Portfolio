@@ -8,6 +8,9 @@ const LikeButton = () => {
   const [animateLikes, setAnimateLikes] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
 
+  // Get the base URL for API calls
+  const baseUrl = import.meta.env.PROD ? 'https://your-vercel-domain.vercel.app' : '';
+
   useEffect(() => {
     setIsClient(true);
 
@@ -27,7 +30,7 @@ const LikeButton = () => {
 
   const fetchLikes = async () => {
     try {
-      const response = await fetch('/api/likes');
+      const response = await fetch(`${baseUrl}/api/likes`);
       const data = await response.json();
       if (data.likes !== undefined) {
         setLikes(data.likes);
@@ -56,7 +59,7 @@ const LikeButton = () => {
 
     try {
       setIsProcessing(true);
-      const response = await fetch('/api/likes', {
+      const response = await fetch(`${baseUrl}/api/likes`, {
         method: 'POST',
       });
       

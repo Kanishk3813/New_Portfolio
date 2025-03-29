@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import clientPromise from '../../mongodb';
+import { ObjectId } from 'mongodb';
 import 'dotenv/config';
 
 export const prerender = false;
@@ -10,13 +11,14 @@ export const GET: APIRoute = async () => {
     const db = client.db("portfolio");
     const likesCollection = db.collection("likes");
     
-    const likesDoc = await likesCollection.findOne({ _id: "counter" });
+    const likesDoc = await likesCollection.findOne({ _id: new ObjectId("counter") });
     const likes = likesDoc ? likesDoc.likes : 0;
     
     return new Response(JSON.stringify({ likes }), {
       status: 200,
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       }
     });
   } catch (error) {
@@ -24,7 +26,8 @@ export const GET: APIRoute = async () => {
     return new Response(JSON.stringify({ error: 'Failed to fetch likes' }), {
       status: 500,
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       }
     });
   }
@@ -37,7 +40,7 @@ export const POST: APIRoute = async () => {
     const likesCollection = db.collection("likes");
     
     const result = await likesCollection.updateOne(
-      { _id: "counter" },
+      { _id: new ObjectId("counter") },
       { $inc: { likes: 1 } },
       { upsert: true }
     );
@@ -45,7 +48,8 @@ export const POST: APIRoute = async () => {
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       }
     });
   } catch (error) {
@@ -53,7 +57,8 @@ export const POST: APIRoute = async () => {
     return new Response(JSON.stringify({ error: 'Failed to update likes' }), {
       status: 500,
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       }
     });
   }
