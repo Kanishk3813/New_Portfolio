@@ -20,7 +20,7 @@ const Resume: React.FC<ResumeProps> = ({ onClose }) => {
           <div className="social-links">
             <a href="https://linkedin.com/in/ayush-tiwari-538ab824b" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <span>|</span>
-            <a href="https://ayushtiwari.vercel.app" target="_blank" rel="noopener noreferrer">Portfolio</a>
+            <a href="https://aaayushh7.vercel.app/" target="_blank" rel="noopener noreferrer">Portfolio</a>
             <span>|</span>
             <a href="https://github.com/aaayushh7" target="_blank" rel="noopener noreferrer">GitHub (50+ Projects)</a>
           </div>
@@ -161,7 +161,7 @@ const Resume: React.FC<ResumeProps> = ({ onClose }) => {
           </div>
         </section>
       </div>
-      <button className="close-button" onClick={onClose}>X</button>
+      <button className="close-button" onClick={onClose}>x</button>
     </div>
   );
 };
