@@ -1,6 +1,5 @@
 import type { APIRoute } from 'astro';
 import clientPromise from '../../mongodb';
-import { ObjectId } from 'mongodb';
 import 'dotenv/config';
 
 export const prerender = false;
@@ -11,7 +10,7 @@ export const GET: APIRoute = async () => {
     const db = client.db("portfolio");
     const likesCollection = db.collection("likes");
     
-    const likesDoc = await likesCollection.findOne({ _id: new ObjectId("counter") });
+    const likesDoc = await likesCollection.findOne({ _id: "counter" });
     const likes = likesDoc ? likesDoc.likes : 0;
     
     return new Response(JSON.stringify({ likes }), {
@@ -40,7 +39,7 @@ export const POST: APIRoute = async () => {
     const likesCollection = db.collection("likes");
     
     const result = await likesCollection.updateOne(
-      { _id: new ObjectId("counter") },
+      { _id: "counter" },
       { $inc: { likes: 1 } },
       { upsert: true }
     );
