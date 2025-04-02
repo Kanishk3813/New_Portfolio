@@ -45,6 +45,11 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body class="bg-[--background] md:px-48 lg:px-20 px-9 relative min-h-screen">
+    <!-- Loading Spinner -->
+    <div id="loading-spinner" class="fixed inset-0 flex items-center justify-center bg-[--background] z-50">
+      <div class="spinner"></div>
+    </div>
+
     <div class="fixed inset-0 -z-10 w-full h-full">
       <Squares 
         client:load
@@ -55,11 +60,22 @@ const { title } = Astro.props;
         hoverFillColor="#ffffff"
       />
     </div>
-    <div class="relative z-10">
+    <div class="relative z-10 opacity-0 transition-opacity duration-500" id="main-content">
       <ClickSparkWrapper client:load >
         <slot />
       </ClickSparkWrapper>
     </div>
+
+    <script>
+      window.addEventListener('load', () => {
+        document.getElementById('loading-spinner').classList.add('fade-out');
+        document.getElementById('main-content').classList.add('fade-in');
+        
+        setTimeout(() => {
+          document.getElementById('loading-spinner').style.display = 'none';
+        }, 500);
+      });
+    </script>
   </body>
 </html>
 
@@ -112,5 +128,30 @@ const { title } = Astro.props;
   * {
     scrollbar-width: thin;
     scrollbar-color: var(--line) var(--container);
+  }
+
+  /* Spinner Styles */
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(164, 118, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--sec);
+    animation: spin 1s ease-in-out infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+  }
+
+  .fade-in {
+    opacity: 1 !important;
   }
 </style>
