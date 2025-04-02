@@ -45,9 +45,22 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body class="bg-[--background] md:px-48 lg:px-20 px-9 relative min-h-screen">
-    <!-- Loading Spinner -->
-    <div id="loading-spinner" class="fixed inset-0 flex items-center justify-center bg-[--background] z-50">
-      <div class="spinner"></div>
+    <!-- Custom Loading Animation -->
+    <div id="loading-spinner" class="fixed inset-0 flex flex-col items-center justify-center bg-[--background] z-50">
+      <div class="loading-container">
+        <div class="grid-spinner">
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square highlight"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+          <div class="square"></div>
+        </div>
+      </div>
+      <div class="loading-text">Loading Portfolio...</div>
     </div>
 
     <div class="fixed inset-0 -z-10 w-full h-full">
@@ -67,13 +80,14 @@ const { title } = Astro.props;
     </div>
 
     <script>
+      // Hide spinner and show content when page is fully loaded
       window.addEventListener('load', () => {
         document.getElementById('loading-spinner').classList.add('fade-out');
         document.getElementById('main-content').classList.add('fade-in');
         
         setTimeout(() => {
           document.getElementById('loading-spinner').style.display = 'none';
-        }, 500);
+        }, 800);
       });
     </script>
   </body>
@@ -130,25 +144,65 @@ const { title } = Astro.props;
     scrollbar-color: var(--line) var(--container);
   }
 
-  /* Spinner Styles */
-  .spinner {
-    width: 50px;
-    height: 50px;
-    border: 3px solid rgba(164, 118, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: var(--sec);
-    animation: spin 1s ease-in-out infinite;
+  /* Custom Grid Spinner Styles */
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
+  .grid-spinner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 8px;
+    width: 90px;
+    height: 90px;
   }
+
+  .square {
+    width: 100%;
+    height: 100%;
+    background-color: #222222;
+    border: 1px solid #2a2a2a;
+    opacity: 0.3;
+    transition: all 0.3s ease;
+  }
+
+  .highlight {
+    background-color: var(--sec);
+    box-shadow: 0 0 15px var(--sec);
+    opacity: 1;
+  }
+
+  .loading-text {
+    margin-top: 20px;
+    color: var(--white);
+    font-size: 14px;
+    letter-spacing: 1px;
+    opacity: 0.8;
+    font-weight: 300;
+  }
+
+  /* Animation for grid spinner */
+  @keyframes highlight-square {
+    0%, 100% { transform: scale(1); opacity: 0.3; background-color: #222222; box-shadow: none; }
+    50% { transform: scale(1.1); opacity: 1; background-color: var(--sec); box-shadow: 0 0 15px var(--sec); }
+  }
+
+  .grid-spinner .square:nth-child(1) { animation: highlight-square 2s infinite 0.1s; }
+  .grid-spinner .square:nth-child(2) { animation: highlight-square 2s infinite 0.2s; }
+  .grid-spinner .square:nth-child(3) { animation: highlight-square 2s infinite 0.3s; }
+  .grid-spinner .square:nth-child(4) { animation: highlight-square 2s infinite 0.4s; }
+  .grid-spinner .square:nth-child(5) { animation: highlight-square 2s infinite 0.5s; }
+  .grid-spinner .square:nth-child(6) { animation: highlight-square 2s infinite 0.6s; }
+  .grid-spinner .square:nth-child(7) { animation: highlight-square 2s infinite 0.7s; }
+  .grid-spinner .square:nth-child(8) { animation: highlight-square 2s infinite 0.8s; }
+  .grid-spinner .square:nth-child(9) { animation: highlight-square 2s infinite 0.9s; }
 
   .fade-out {
     opacity: 0;
-    transition: opacity 0.5s ease-out;
+    transition: opacity 0.8s ease-out;
   }
 
   .fade-in {
