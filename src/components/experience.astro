@@ -1,0 +1,79 @@
+---
+import FuzzyText from "../React/FuzzyText";
+import ExperienceCard from "../React/ExperienceCard";
+
+const hoverIntensity = 0.5;
+const enableHover = true;
+
+interface Experience {
+  company: string;
+  position: string;
+  duration: string;
+  description: string[];
+  technologies: string[];
+  logo: string;
+}
+
+const experiences: Experience[] = [
+  {
+    company: "TaskLabs",
+    position: "Full Stack Developer Intern",
+    duration: "Jun 2024 - Dec 2024",
+    description: [
+      "Contributed to the development of core functionalities for TaskLabs, enhancing user experience and platform stability",
+      "Implemented key features and optimizations, leading to a 30% improvement in system performance",
+      "Collaborated with the founding team to develop and execute product development roadmaps, resulting in a 25% faster time-to-market and a 15% increase in user acquisition"
+    ],
+    technologies: ["React", "TypeScript", "Node.js", "NextJs", "Tailwind CSS"],
+    logo: "/tl.png"
+  },
+  {
+    company: "Service to Mankind (STM)",
+    position: "Full Stack Developer",
+    duration: "Apr 2024 - Jun 2024",
+    description: [
+      "Engineered and launched a donation feature on the website, resulting in a 50% increase in donations",
+      "Administered and modernized the tech stack, enhancing system security and operational efficiency",
+      "Collaborated with cross-functional teams to deliver high-quality open-source software solutions"
+    ],
+    technologies: ["JavaScript", "HTML5", "CSS3", "React", "Firebase"],
+    logo: "/stm.png"
+  }
+];
+---
+
+<section
+  id="experience"
+  class="py-12 border-t border-[#ffffff10] text-[var(--white)]"
+>
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">My Journey</h2>
+    <div class="mb-8">
+      <FuzzyText 
+        client:only="react"
+        baseIntensity={0.2} 
+        hoverIntensity={hoverIntensity} 
+        enableHover={enableHover}
+        fontSize="2.5rem"
+        color="#ffffff"
+        text="Experience"
+      />
+    </div>
+
+    <div class="relative">
+      <!-- Timeline line -->
+      <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[var(--sec)] via-[var(--white-icon)] to-transparent"></div>
+      
+      <!-- Experience cards -->
+      <div class="space-y-12">
+        {experiences.map((experience, index) => (
+          <ExperienceCard 
+            client:only 
+            experience={experience} 
+            index={index} 
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
