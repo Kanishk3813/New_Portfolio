@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Achievements.css';
+import './achievements.css';
 
 interface Certificate {
   title: string;
@@ -7,7 +7,6 @@ interface Certificate {
   date: string;
   credential: string;
   image: string;
-  // Additional fields for expanded view
   description?: string;
   skills?: string[];
   projectLink?: string;
@@ -21,7 +20,6 @@ interface Hackathon {
   date: string;
   description: string;
   image: string;
-  // Additional fields for expanded view
   problemDescription?: string;
   prizeMoney?: string;
   company?: string;
@@ -38,7 +36,6 @@ interface Workshop {
   date: string;
   description: string;
   image: string;
-  // Additional fields for expanded view
   attendees?: number;
   topics?: string[];
   feedback?: string;
@@ -55,22 +52,18 @@ const AchievementCard: React.FC<Props> = ({ type, data }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
-  // Add effect to manage body overflow
   useEffect(() => {
-    // When modal is shown, prevent body scroll
     if (showModal) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
     }
     
-    // Cleanup function to ensure body scroll is restored
     return () => {
       document.body.style.overflow = 'auto';
     };
   }, [showModal]);
 
-  // Handle escape key for modal
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && showModal) {
@@ -83,7 +76,6 @@ const AchievementCard: React.FC<Props> = ({ type, data }) => {
   }, [showModal]);
 
   const openModal = (e: React.MouseEvent) => {
-    // Fix: Make sure the event doesn't bubble up
     if (e) {
       e.preventDefault();
       e.stopPropagation();
@@ -95,7 +87,6 @@ const AchievementCard: React.FC<Props> = ({ type, data }) => {
     setShowModal(false);
   };
 
-  // Handle click outside to close modal
   const handleClickOutside = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       closeModal();
