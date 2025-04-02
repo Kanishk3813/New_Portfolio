@@ -1,11 +1,11 @@
 ---
-import { Image } from "astro:assets";
+import  ImageMetadata  from "astro:assets";
 import svgl from "../../public/svgl.png";
-import Prism from "../../public/prism.png";
-import Sonch from "../../public/sonch.png";
-import bucket from "../../public/bucket.png";
-import Mealy from "../../public/mealy.jpg";
-import Trackhub from "../../public/trackhub.png";
+import Intel from "../../public/intel.png";
+import Parse from "../../public/parseflow.png";
+import Capital from "../../public/intel1.png";
+import Nptel from "../../public/nptel.png";
+import TaskX from "../../public/taskx.png";
 import ProjectCard from "../React/ProjectCard";
 import FuzzyText from "../React/FuzzyText";
 const hoverIntensity = 0.5;
@@ -21,37 +21,37 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Mealy",
-    image: Mealy as ImageMetadata,
+    title: "NptelOverflow",
+    image: Nptel as ImageMetadata,
     link: "https://github.com/aaayushh7/Mealy-",
-    preview: "https://mealy-a7.vercel.app",
+    preview: "https://www.npteloverflow.in/",
     status: "Developed",
   },
   {
-    title: "Trackhub",
-    image: Trackhub as ImageMetadata,
-    link: "https://github.com/gothsec/stockin-demo",
-    preview: "https://trackhub-at.vercel.app",
-    status: "Developed",
+    title: "TaskX",
+    image: TaskX as ImageMetadata,
+    link: "https://github.com/Kanishk3813/TaskX",
+    preview: "https://task-x-rouge.vercel.app/",
+    status: "Under Development",
   },
   {
-    title: "Bucket (web,Android,Ios)",
-    image: bucket as ImageMetadata,
-    link: "https://github.com/aaayushh7/GD-frontend",
-    preview: "https://cravehub.store/",
+    title: "CapitalCue - AI Branch Manager",
+    image: Capital as ImageMetadata,
+    link: "https://github.com/Kanishk3813/ai-manager",
+    preview: "capitalcue-drab.vercel.app",
     status: "On Development",
   },
   {
-    title: "Anomaly Detection of Smart home",
-    image: Prism as ImageMetadata,
-    link: "https://github.com/aaayushh7/AnomalyPrism-frontend",
-    preview: "https://anomaly-prism-frontend.vercel.app/",
+    title: "Intel Review Analyzer",
+    image: Intel as ImageMetadata,
+    link: "https://github.com/Kanishk3813/Intel_Sentiment_Analysis",
+    preview: "https://reviewanalyzer.vercel.app/",
     status: "Developed",
   },
   {
-    title: "Sonch",
-    image: Sonch as ImageMetadata,
-    link: "https://github.com/aaayushh7/projectSonch",
+    title: "ParseFlow",
+    image: Parse as ImageMetadata,
+    link: "https://github.com/Kanishk3813/ParseFlow",
     preview: "https://project-sonch-5buctavxw-aaayushh7s-projects.vercel.app/",
     status: "Developed",
   },

@@ -10,19 +10,17 @@ const Resume: React.FC<ResumeProps> = ({ onClose }) => {
     <div className="resume-container">
       <div className="resume-content">
         <div className="resume-header">
-          <h1>Ayush Tiwari</h1>
-          <p className="location">Chennai, Tamil Nadu, India</p>
+          <h1>Kanishk Reddy</h1>
+          <p className="location">Hyderabad, Telangana, India</p>
           <div className="contact-info">
-            <a href="mailto:aayushtiwari071@gmail.com">aayushtiwari071@gmail.com</a>
+            <a href="mailto:kanishkreddy3813@gmail.com">kanishkreddy3813@gmail.com</a>
             <span>|</span>
-            <a href="tel:6306500300">6306500300</a>
+            <a href="tel:7286971004">(+91) 7286971004</a>
           </div>
           <div className="social-links">
-            <a href="https://linkedin.com/in/ayush-tiwari-538ab824b" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/kanishk-reddy-8161a122a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <span>|</span>
-            <a href="https://aaayushh7.vercel.app/" target="_blank" rel="noopener noreferrer">Portfolio</a>
-            <span>|</span>
-            <a href="https://github.com/aaayushh7" target="_blank" rel="noopener noreferrer">GitHub (50+ Projects)</a>
+            <a href="https://github.com/Kanishk3813" target="_blank" rel="noopener noreferrer">GitHub</a>
           </div>
         </div>
 
@@ -32,26 +30,23 @@ const Resume: React.FC<ResumeProps> = ({ onClose }) => {
             <div className="subheading">
               <div>
                 <h3>SRM Institute of Science and Technology</h3>
-                <p>Bachelor of Technology in Computer Science (CGPA: 8.55/10)</p>
+                <p>Bachelor of Engineering in Computer Science (CGPA: 8.6/10)</p>
               </div>
               <div className="date-location">
-                <p>Aug 2022 – Jun 2026</p>
+                <p>2022 – 2026</p>
                 <p>Chennai, India</p>
               </div>
             </div>
-          </div>
-        </section>
-
-        <section className="resume-section">
-          <h2>Certifications</h2>
-          <div className="section-content">
-            <ul>
-              <li>NPTEL – <a href="https://drive.google.com/file/d/1NEK0IxV8eMLZIK4zKv7ErTKQ_Nd43JAs/view?usp=drive_link">Programming in Java</a>, <a href="#">Introduction to Machine Learning</a></li>
-              <li>Hackerrank – <a href="https://drive.google.com/file/d/1zOqjyuiO_wcyLAuPCrmY5KtdQe-ulwzE/view?usp=sharing">React Front-end Developer Test</a>, <a href="https://www.hackerrank.com/profile/at7257">Profile</a></li>
-              <li>Cisco – <a href="https://drive.google.com/file/d/1RF8RbWn6SdCoJi-d340PN3tBB4BfIzzD/view?usp=drive_link">Introduction to IOT</a>, <a href="https://drive.google.com/file/d/1-VL_2E2w4JjZuBbZwm_R-WfwFz7XLD03/view?usp=drive_link">Networking Basics</a></li>
-              <li>Oracle – <a href="https://drive.google.com/file/d/1XmqEEpSH_8kZTK5dyVJBtg8ot9AZRWhq/view?usp=drive_link">Become an OCI Foundations Associate (2024)</a></li>
-              <li>Coursera – <a href="https://drive.google.com/file/d/1aI9I5IRNaS1IMkBYuvf2smynAqVdL8pn/view?usp=drive_link">Data Structures</a></li>
-            </ul>
+            <div className="subheading">
+              <div>
+                <h3>Sri Chaitanya Jr. College</h3>
+                <p>XII Board Percentage - 79.0 %</p>
+              </div>
+              <div className="date-location">
+                <p>2020 – 2022</p>
+                <p>Hyderabad, India</p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -60,48 +55,34 @@ const Resume: React.FC<ResumeProps> = ({ onClose }) => {
           <div className="section-content">
             <div className="subheading">
               <div>
-                <h3>Software Engineer Intern</h3>
-                <p>SRM Technologies</p>
+                <h3>Full Stack Developer Intern</h3>
+                <p>TaskLabs</p>
               </div>
               <div className="date-location">
-                <p>Mar 2024 – Nov 2024</p>
-                <p>Chennai, India</p>
+                <p>Jun 2024 – Dec 2024</p>
+                <p>Remote</p>
               </div>
             </div>
             <ul>
-              <li>Developed scalable web applications using <strong>React.js</strong>, <strong>Next.js</strong>, and <strong>Tailwind CSS</strong>, achieving a 30% reduction in page load times.</li>
-              <li>Implemented <strong>LangChain</strong> for AI-driven features, enhancing automation processes by 40%.</li>
-              <li>Collaborated with cross-functional teams to deliver key features within strict deadlines.</li>
+              <li>Contributed to the development of core functionalities for TaskLabs, enhancing user experience and platform stability.</li>
+              <li>Implemented key features and optimizations, leading to a 30% improvement in system performance.</li>
+              <li>Collaborated with the founding team to develop and execute product development roadmaps, resulting in a 25% faster time-to-market and a 15% increase in user acquisition.</li>
             </ul>
 
             <div className="subheading">
               <div>
-                <h3>Research Intern</h3>
-                <p>Samsung Prism</p>
+                <h3>Full Stack Developer</h3>
+                <p>Service to Mankind (STM)</p>
               </div>
               <div className="date-location">
-                <p>Mar 2024 – Dec 2024</p>
-                <p>Chennai, India</p>
+                <p>Apr 2024 – Jun 2024</p>
+                <p>Remote</p>
               </div>
             </div>
             <ul>
-              <li>Conducted research on <strong>fine-tuning LLMs</strong> and <strong>BERT-based models</strong>.</li>
-              <li>Prepared technical documentation for team-wide access, enhancing knowledge sharing among engineers.</li>
-            </ul>
-
-            <div className="subheading">
-              <div>
-                <h3>Web/App Development Head</h3>
-                <p>CINTEL's Next-Gen AI</p>
-              </div>
-              <div className="date-location">
-                <p>Aug 2023 – Jun 2024</p>
-                <p>Chennai, India</p>
-              </div>
-            </div>
-            <ul>
-              <li>Led the development of full-stack applications using <strong>React.js</strong>, <strong>Next.js</strong>, <strong>MongoDB</strong>, and <strong>Framer</strong>, resulting in a 35% increase in user engagement.</li>
-              <li>Directed a team of 5 developers to deliver features for 1K+ active users, focusing on scalability and security.</li>
+              <li>Engineered and launched a donation feature on the website, resulting in a 50% increase in donations.</li>
+              <li>Administered and modernized the tech stack, enhancing system security and operational efficiency.</li>
+              <li>Collaborated with cross-functional teams to deliver high-quality open-source software solutions.</li>
             </ul>
           </div>
         </section>
@@ -110,38 +91,29 @@ const Resume: React.FC<ResumeProps> = ({ onClose }) => {
           <h2>Notable Projects</h2>
           <div className="section-content">
             <div className="project">
-              <h3><a href="https://cravehub.store/">Quick-commerce Food Delivery App</a> | <em>React.js, Ionic Capacitor, Node.js, Express, MongoDB, Firebase</em></h3>
+              <h3><a href="https://www.npteloverflow.in/">NptelOverflow</a> | <em>NextJs, Typescript, Javascript, Firebase, Python</em></h3>
               <ul>
-                <li>Developed and deployed a <strong>quick-commerce platform</strong> actively used in Potheri, launching in April.</li>
-                <li>Built cross-platform <strong>Android and iOS apps</strong> using <strong>Ionic Capacitor</strong>, increasing order volume by 40%.</li>
-                <li>Integrated <strong>real-time order tracking</strong> and <strong>geofencing</strong>, optimizing delivery efficiency.</li>
-                <li>Designed an intuitive admin panel, reducing <strong>manual intervention</strong> and improving operational workflow.</li>
-                <li><strong>Live Site:</strong> <a href="https://cravehub.store">cravehub.store</a></li>
+                <li>Developed a Q&A platform focused on NPTEL courses, providing a centralized space for users to access, answer, and vote on course-related questions, increasing user engagement by 40%.</li>
+                <li>Implemented a forum for open discussions and customizable user profiles, resulting in a 30% increase in user retention through enhanced community interaction and personalized experiences.</li>
+                <li>Boosted user contributions by 35% through a leaderboard system, encouraging competitive participation.</li>
               </ul>
             </div>
 
             <div className="project">
-              <h3><a href="https://trackhub-at.vercel.app/">TrackHub</a> | <em>Next.js, TypeScript, Node.js, MongoDB, BrightData, NodeMailer</em></h3>
+              <h3><a href="https://github.com/Kanishk3813/Intel_Sentiment_Analysis">Review Analyzer</a> | <em>React, Python, Flask, Axios, Matplotlib</em></h3>
               <ul>
-                <li>Developed an automated price tracking system for <strong>Amazon</strong> products, supporting 1000+ concurrent users, leading to a 35% increase in user retention.</li>
-                <li>Implemented real-time email notifications for price drops, utilizing <strong>NodeMailer</strong> for scheduled alerts.</li>
-                <li>Built a robust backend with <strong>Node.js</strong> and <strong>MongoDB</strong>, ensuring smooth data management and scalability.</li>
+                <li>Developed and trained a deep learning model (BERT) for sentiment analysis of reviews, classifying them into positive, neutral, or negative categories.</li>
+                <li>Implemented features like word cloud generation and past trends visualization to help businesses identify common themes and track changes in customer perception.</li>
+                <li>Enabled CSV upload for batch processing and provided downloadable reports in JSON format for detailed analysis.</li>
               </ul>
             </div>
 
             <div className="project">
-              <h3><a href="https://github.com/aaayushh7/GuardianShe">GuardianShe</a> | <em>Java, Android Studio, GitHub API</em></h3>
+              <h3><a href="https://github.com/">Dark Pattern Buster</a> | <em>HTML, CSS, JavaScript, Python</em></h3>
               <ul>
-                <li>Engineered a women safety application that activates SOS mode with a click, reducing emergency response times by 30%.</li>
-                <li>Integrated intelligent detection of movement and real-time location tracking to improve safety and accuracy.</li>
-              </ul>
-            </div>
-
-            <div className="project">
-              <h3>Authenticheck | <em>WebRTC, Node.js, Express, Flask, TensorFlow.js</em></h3>
-              <ul>
-                <li>Developed a secure video conferencing platform with integrated <strong>real-time face detection</strong> for user verification.</li>
-                <li>Enhanced video calls by adding <strong>eye-tracking</strong> and <strong>summary generation</strong> features, improving interview effectiveness.</li>
+                <li>The Dark Pattern Buster Chrome extension is a powerful tool designed to combat deceptive design tactics.</li>
+                <li>Integrated dark pattern keyword highlighting and informative tooltips, boosting user reporting and site blacklisting accuracy to 97%.</li>
+                <li>Implemented website safety score display function utilizing APIs for enhanced user security.</li>
               </ul>
             </div>
           </div>
@@ -151,12 +123,33 @@ const Resume: React.FC<ResumeProps> = ({ onClose }) => {
           <h2>Technical Skills</h2>
           <div className="section-content">
             <ul className="skills-list">
-              <li><strong>Programming Languages:</strong> Java, Python, C++, JavaScript, TypeScript</li>
-              <li><strong>Web Development:</strong> React.js, Next.js, Node.js, Express</li>
-              <li><strong>Databases:</strong> MongoDB, MySQL, Redis</li>
-              <li><strong>DevOps:</strong> Docker, Git, GitHub</li>
-              <li><strong>Cloud:</strong> AWS, Firebase</li>
-              <li><strong>Tools:</strong> Tailwind CSS, WebRTC, Framer</li>
+              <li><strong>Languages:</strong> C/C++, Python, JavaScript, HTML, CSS, TypeScript</li>
+              <li><strong>Frameworks & Libraries:</strong> Tailwind CSS, NextJs, Bootstrap, Flask, Numpy, Pandas, Matplotlib, ReactJs, Tkinter, Streamlit</li>
+              <li><strong>Tools:</strong> Jupyter Notebook, VScode, Github, Git, Google Colab, AWS</li>
+              <li><strong>Databases:</strong> MySQL, PostgreSQL</li>
+              <li><strong>Machine Learning/Deep Learning:</strong> TensorFlow, PyTorch, scikit-learn, Keras, Librosa, Computer Vision</li>
+            </ul>
+          </div>
+        </section>
+
+        <section className="resume-section">
+          <h2>Certifications</h2>
+          <div className="section-content">
+            <ul>
+              <li>Introduction to Salesforce Lightning Web Component</li>
+              <li>Supervised Machine Learning - Coursera</li>
+              <li>Java, Computer Architecture, DAA - NPTEL</li>
+              <li>Cloud Foundations & Architecting – AWS Academy</li>
+            </ul>
+          </div>
+        </section>
+
+        <section className="resume-section">
+          <h2>Extra-Curricular Activities</h2>
+          <div className="section-content">
+            <ul>
+              <li>Engaged as an active member across multiple technical clubs, organizing various events and hackathons.</li>
+              <li>Cricket enthusiast with a passion for gaming and anime during downtime.</li>
             </ul>
           </div>
         </section>
@@ -166,4 +159,4 @@ const Resume: React.FC<ResumeProps> = ({ onClose }) => {
   );
 };
 
-export default Resume; 
+export default Resume;
