@@ -12,6 +12,7 @@ interface Experience {
   description: string[];
   technologies: string[];
   logo: string;
+  recommendationLetter?: string; 
 }
 
 const experiences: Experience[] = [
@@ -24,8 +25,9 @@ const experiences: Experience[] = [
       "Implemented key features and optimizations, leading to a 30% improvement in system performance",
       "Collaborated with the founding team to develop and execute product development roadmaps, resulting in a 25% faster time-to-market and a 15% increase in user acquisition"
     ],
-    technologies: ["React", "TypeScript", "Node.js", "NextJs", "Tailwind CSS"],
-    logo: "/tl.png"
+    technologies: ["React", "TypeScript", "Node.js", "NextJs", "Tailwind CSS", "AWS", "Automation", "UI/UX"],
+    logo: "/tl.png",
+    recommendationLetter: "/documents/Tasklabs_LOR.pdf"
   },
   {
     company: "Service to Mankind (STM)",
@@ -37,7 +39,8 @@ const experiences: Experience[] = [
       "Collaborated with cross-functional teams to deliver high-quality open-source software solutions"
     ],
     technologies: ["JavaScript", "HTML5", "CSS3", "React", "Firebase"],
-    logo: "/stm.png"
+    logo: "/stm.png",
+    recommendationLetter: "/documents/STM.pdf"
   }
 ];
 ---

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { FileDown } from 'lucide-react';
 
 interface Experience {
   company: string;
@@ -7,6 +8,7 @@ interface Experience {
   description: string[];
   technologies: string[];
   logo: string;
+  recommendationLetter?: string; // Optional path to recommendation letter
 }
 
 interface ExperienceCardProps {
@@ -40,14 +42,34 @@ export default function ExperienceCard({ experience, index }: ExperienceCardProp
             ${isHovered ? 'transform translate-y-[-5px] shadow-lg shadow-[var(--sec-tr)]' : ''}
           `}
         >
-          <div className="flex items-center gap-4 mb-4">
-            <div className="size-12 rounded-lg bg-[#252525] flex items-center justify-center p-2">
-              <img src={experience.logo} alt={experience.company} className="size-8" />
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-4">
+              <div className="size-12 rounded-lg bg-[#252525] flex items-center justify-center p-2">
+                <img src={experience.logo} alt={experience.company} className="size-8" />
+              </div>
+              <div>
+                <h3 className="text-xl font-medium">{experience.position}</h3>
+                <p className="text-[var(--white-icon)]">{experience.company}</p>
+              </div>
             </div>
-            <div>
-              <h3 className="text-xl font-medium">{experience.position}</h3>
-              <p className="text-[var(--white-icon)]">{experience.company}</p>
-            </div>
+            
+            {/* Minimal Download Icon */}
+            {experience.recommendationLetter && (
+              <div className="relative group">
+                <a 
+                  href={experience.recommendationLetter}
+                  download={`${experience.company}_Recommendation.pdf`}
+                  className="flex items-center justify-center size-8 rounded-full bg-[var(--sec-tr)] hover:bg-[var(--sec)] transition-all duration-300"
+                >
+                  <FileDown size={16} className="text-[var(--white)] group-hover:text-black" />
+                </a>
+                
+                {/* Tooltip on hover */}
+                <div className="absolute right-0 -bottom-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap text-xs px-2 py-1 rounded bg-[#000000cc] text-white">
+                  Download Recommendation
+                </div>
+              </div>
+            )}
           </div>
           
           <div className="mb-4">

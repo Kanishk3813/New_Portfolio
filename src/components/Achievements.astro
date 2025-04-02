@@ -1,0 +1,268 @@
+---
+import FuzzyText from "../React/FuzzyText";
+import AchievementCard from "../React/Achievements";
+
+const hoverIntensity = 0.5;
+const enableHover = true;
+
+interface Certificate {
+  title: string;
+  issuer: string;
+  date: string;
+  credential: string;
+  image: string;
+  // Additional fields for expanded view
+  description?: string;
+  skills?: string[];
+  projectLink?: string;
+  additionalImages?: string[];
+}
+
+interface Hackathon {
+  name: string;
+  position: string;
+  organizer: string;
+  date: string;
+  description: string;
+  image: string;
+  // Additional fields for expanded view
+  problemDescription?: string;
+  prizeMoney?: string;
+  company?: string;
+  teamImage?: string;
+  techStack?: string[];
+  projectLink?: string;
+  additionalImages?: string[];
+}
+
+interface Workshop {
+  title: string;
+  organizer: string;
+  role: string;
+  date: string;
+  description: string;
+  image: string;
+  // Additional fields for expanded view
+  attendees?: number;
+  topics?: string[];
+  feedback?: string;
+  materialsLink?: string;
+  additionalImages?: string[];
+  projectLink?: string;
+}
+
+// Certificates data with expanded information
+const certificates: Certificate[] = [
+  {
+    title: "Oracle Cloud Infrastructure 2024 Certified Foundations Associate",
+    issuer: "Oracle",
+    date: "Feb 2025",
+    credential: "https://www.credly.com/badges/example",
+    image: "/documents/oracle.jpg",
+    description: "In the Oracle Cloud Infrastructure Foundations Associate course, I learned about fundamental cloud concepts, OCI core services, security, pricing, and best practices for deploying and managing cloud resources efficiently.",
+    skills: ["Cloud Computing", "OCI Core Services", "Security Best Practices", "Pricing & Billing", "Networking in OCI"],
+    additionalImages: ["/intel.png"]
+  },
+  {
+    title: "Salesforce Certified AI Associate",
+    issuer: "Salesforce",
+    date: "Jan 2025",
+    credential: "https://www.salesforce.com/certification/example",
+    image: "/documents/salesforce.jpg",
+    description: "In the Salesforce AI Associate course, I gained insights into AI fundamentals, ethical considerations, and how AI integrates with Salesforce to enhance automation, data-driven decision-making, and customer relationship management.",
+    skills: ["Artificial Intelligence", "Machine Learning Basics", "AI Ethics", "Salesforce AI Integration", "Automation in CRM"],
+    projectLink: "https://github.com/yourusername/portfolio"
+  },
+  {
+    "title": "Cisco Networking Basics",
+    "issuer": "Cisco",
+    "date": "Oct 2024",
+    "credential": "https://www.udemy.com/certificate/example",
+    "image": "/documents/cisco.jpg",
+    "description": "In this course, I learned fundamental networking concepts, including network communication, IP addressing (IPv4 & IPv6), routing, Ethernet networks, and troubleshooting techniques. I also gained hands-on experience in configuring wireless routers and ensuring secure network connectivity.",
+    "skills": ["Networking", "IP Addressing", "Routing", "Ethernet", "Troubleshooting", "Wireless Networks"]
+}
+];
+
+// Hackathons data with expanded information
+const hackathons: Hackathon[] = [
+  {
+    name: "Standard Chartered Hackathon 2025",
+    position: "1st Place",
+    organizer: "Standard Chartered Bank",
+    date: "Mar 2025",
+    description: "Me and my Team secured 1st place in the Standard Chartered Hackathon 2025 with CapitalCue, an AI-powered platform that delivers a seamless, branch-like digital experience for loan applicants. It leverages video interactions, facial verification, and OCR-based document processing to streamline loan applications efficiently.",
+    image: "/documents/sc.png",
+    problemDescription: "Design an AI-powered Branch Manager assists users with loan applications via video, verifying identity, processing documents, and providing instant decisions for a seamless digital experience.",
+    prizeMoney: "₹25000",
+    company: "Standard Chartered",
+    teamImage: "/documents/sc_team.jpg",
+    techStack: ["Next.Js", "Python", "Tailwind CSS", "Node.Js", "PyTesseract", "Firebase", "OpenCV", "Numpy"],
+    projectLink: "https://github.com/Kanishk3813/ai-manager",
+    additionalImages: ["/documents/sc_add.jpg", "/documents/sc_add1.jpg"]
+  },
+  {
+    name: "Prayagraj Mahakumbh Hackathon 2025",
+    position: "2nd Place",
+    organizer: "IIIT Allahabad",
+    date: "Mar 2024",
+    description: "Our Crowd Surveillance System leverages computer vision to monitor crowd behavior, detect anomalies, and identify hazards in real-time during large-scale events. It provides crowd counting for managing density, anomaly detection for spotting suspicious activity, and fire detection for early hazard prevention. By offering real-time insights, the system helps event organizers and security teams ensure safety and smooth operations.",
+    image: "/documents/iiita.png",
+    problemDescription: "Develop a Crowd Surveillance System using computer vision to monitor crowd behavior, detect anomalies, and identify hazards in real-time. It enables crowd counting, anomaly detection, and fire detection to enhance event safety and management.",
+    // prizeMoney: "$3,000",
+    company: "IIIT Allahabad",
+    teamImage: "/documents/mahakumbh.jpg",
+    techStack: ["Python", "OpenCV", "YoloV4", "Flask", "TensorFlow", "NumPy", "Pandas"],
+    projectLink: "https://github.com/Kanishk3813/Crowd-Surveillance-System",
+    additionalImages: []
+  }
+];
+
+// Workshops data with expanded information
+const workshops: Workshop[] = [
+{
+    title: "Intel Unnati Industrial Training – 2024",
+    organizer: "Intel",
+    role: "Participant",
+    date: "May 2024 - July 2024",
+    description: "Completed industrial training focused on sentiment analysis of Intel products using online reviews, under the guidance of Dr. M Safa.",
+    image: "/documents/intel_logo.png",
+    attendees: null,
+    topics: ["Sentiment Analysis", "Natural Language Processing", "Machine Learning", "Data Preprocessing", "Model Evaluation"],
+    feedback: "An enriching experience that deepened my understanding of sentiment analysis and real-world NLP applications.",
+    projectLink: "https://github.com/Kanishk3813/Intel_Sentiment_Analysis",
+    additionalImages: ["/documents/intel.jpg"]
+  },
+//   {
+//     title: "AI and ML Foundations",
+//     organizer: "Innovation Club",
+//     role: "Participant",
+//     date: "Dec 2023",
+//     description: "Participated in an intensive 3-day workshop on AI/ML fundamentals and applications.",
+//     image: "/intel.png",
+//     attendees: 30,
+//     topics: ["Neural Networks", "Computer Vision", "Natural Language Processing", "Reinforcement Learning"],
+//     feedback: "Gained practical knowledge that I was able to immediately apply to my projects.",
+//     additionalImages: ["/intel.png"]
+//   }
+];
+---
+
+<section
+  id="achievements"
+  class="py-12 border-t border-[#ffffff10] text-[var(--white)]"
+>
+  <div class="max-w-5xl mx-auto px-4">
+    <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">My Recognition</h2>
+    <div class="mb-8">
+      <FuzzyText 
+        client:load
+        baseIntensity={0.2} 
+        hoverIntensity={hoverIntensity} 
+        enableHover={enableHover}
+        fontSize="2.5rem"
+        color="#ffffff"
+        text="Achievements"
+      />
+    </div>
+
+    <!-- Certifications Section -->
+    <div class="mb-12">
+      <h3 class="text-2xl font-medium mb-6 border-l-4 border-[var(--sec)] pl-4">Certifications</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {certificates.map((cert) => (
+          <AchievementCard 
+            client:load
+            type="certificate" 
+            data={cert} 
+          />
+        ))}
+      </div>
+    </div>
+
+    <!-- Hackathons Section -->
+    <div class="mb-12">
+      <h3 class="text-2xl font-medium mb-6 border-l-4 border-[var(--sec)] pl-4">Hackathons</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {hackathons.map((hack) => (
+          <AchievementCard 
+            client:load
+            type="hackathon" 
+            data={hack} 
+          />
+        ))}
+      </div>
+    </div>
+
+    <!-- Workshops Section -->
+    <div class="mb-12">
+      <h3 class="text-2xl font-medium mb-6 border-l-4 border-[var(--sec)] pl-4">Workshops</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {workshops.map((workshop) => (
+          <AchievementCard 
+            client:load
+            type="workshop" 
+            data={workshop} 
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .shiny-sec {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .shiny-sec::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.05) 25%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.05) 75%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    animation: shine 3s infinite;
+    pointer-events: none;
+  }
+  
+  @keyframes shine {
+    to {
+      background-position: -100% 0;
+    }
+  }
+</style>
+
+<script>
+  // Ensure modal functionality works properly by adding any necessary global handlers
+  document.addEventListener('DOMContentLoaded', () => {
+    // This helps ensure the React components are fully hydrated
+    console.log("Achievements section initialized");
+    
+    // Add an escape key handler for modals
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        // Find and close any open modals
+        const modals = document.querySelectorAll('[role="dialog"]');
+        modals.forEach(modal => {
+          if (modal.classList.contains('fixed')) {
+            // Trigger close button click if present
+            const closeBtn = modal.querySelector('button');
+            if (closeBtn) closeBtn.click();
+          }
+        });
+      }
+    });
+  });
+</script>
