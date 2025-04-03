@@ -8,7 +8,7 @@ interface Experience {
   description: string[];
   technologies: string[];
   logo: string;
-  recommendationLetter?: string; // Optional path to recommendation letter
+  recommendationLetter?: string; 
 }
 
 interface ExperienceCardProps {

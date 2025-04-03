@@ -11,11 +11,11 @@ interface Certificate {
   date: string;
   credential: string;
   image: string;
-  // Additional fields for expanded view
   description?: string;
   skills?: string[];
   projectLink?: string;
   additionalImages?: string[];
+  pdfUrl?: string;
 }
 
 interface Hackathon {
@@ -25,7 +25,6 @@ interface Hackathon {
   date: string;
   description: string;
   image: string;
-  // Additional fields for expanded view
   problemDescription?: string;
   prizeMoney?: string;
   company?: string;
@@ -33,6 +32,7 @@ interface Hackathon {
   techStack?: string[];
   projectLink?: string;
   additionalImages?: string[];
+  pdfUrl?: string;
 }
 
 interface Workshop {
@@ -42,49 +42,50 @@ interface Workshop {
   date: string;
   description: string;
   image: string;
-  // Additional fields for expanded view
   attendees?: number;
   topics?: string[];
   feedback?: string;
   materialsLink?: string;
   additionalImages?: string[];
   projectLink?: string;
+  pdfUrl?: string;
 }
 
-// Certificates data with expanded information
 const certificates: Certificate[] = [
   {
     title: "Oracle Cloud Infrastructure 2024 Certified Foundations Associate",
     issuer: "Oracle",
     date: "Feb 2025",
-    credential: "https://www.credly.com/badges/example",
+    credential: "https://catalog-education.oracle.com/pls/certview/sharebadge?id=88ED3416BDBD0507B472872F585EFDD2597C97DB3D68B5074AFBEBB42E0BAB91",
     image: "/documents/oracle.jpg",
     description: "In the Oracle Cloud Infrastructure Foundations Associate course, I learned about fundamental cloud concepts, OCI core services, security, pricing, and best practices for deploying and managing cloud resources efficiently.",
     skills: ["Cloud Computing", "OCI Core Services", "Security Best Practices", "Pricing & Billing", "Networking in OCI"],
-    additionalImages: ["/intel.png"]
+    additionalImages: [],
+    pdfUrl: "/documents/oracle.pdf"
   },
   {
     title: "Salesforce Certified AI Associate",
     issuer: "Salesforce",
     date: "Jan 2025",
-    credential: "https://www.salesforce.com/certification/example",
+    credential: "https://trailhead.salesforce.com/en/credentials/certification-detail-print/?searchString=YHlUJgSZ/bm0dAC1VxpXIBENsjSCs2ociWY+F/fSF9jPAsBAb0qFi/NRYKK9hMa4",
     image: "/documents/salesforce.jpg",
     description: "In the Salesforce AI Associate course, I gained insights into AI fundamentals, ethical considerations, and how AI integrates with Salesforce to enhance automation, data-driven decision-making, and customer relationship management.",
     skills: ["Artificial Intelligence", "Machine Learning Basics", "AI Ethics", "Salesforce AI Integration", "Automation in CRM"],
-    projectLink: "https://github.com/yourusername/portfolio"
+    projectLink: "",
+    pdfUrl: "/documents/salesforce.pdf"
   },
   {
-    "title": "Cisco Networking Basics",
-    "issuer": "Cisco",
-    "date": "Oct 2024",
-    "credential": "https://www.udemy.com/certificate/example",
-    "image": "/documents/cisco.jpg",
-    "description": "In this course, I learned fundamental networking concepts, including network communication, IP addressing (IPv4 & IPv6), routing, Ethernet networks, and troubleshooting techniques. I also gained hands-on experience in configuring wireless routers and ensuring secure network connectivity.",
-    "skills": ["Networking", "IP Addressing", "Routing", "Ethernet", "Troubleshooting", "Wireless Networks"]
+    title: "Cisco Networking Basics",
+    issuer: "Cisco",
+    date: "Oct 2024",
+    credential: "https://www.credly.com/badges/82cb43b9-b46b-4783-841b-b63a4c55e42d/print",
+    image: "/documents/cisco.jpg",
+    description: "In this course, I learned fundamental networking concepts, including network communication, IP addressing (IPv4 & IPv6), routing, Ethernet networks, and troubleshooting techniques. I also gained hands-on experience in configuring wireless routers and ensuring secure network connectivity.",
+    skills: ["Networking", "IP Addressing", "Routing", "Ethernet", "Troubleshooting", "Wireless Networks"],
+    pdfUrl: "/documents/cisco.pdf"
 }
 ];
 
-// Hackathons data with expanded information
 const hackathons: Hackathon[] = [
   {
     name: "Standard Chartered Hackathon 2025",
@@ -99,7 +100,8 @@ const hackathons: Hackathon[] = [
     teamImage: "/documents/sc_team.jpg",
     techStack: ["Next.Js", "Python", "Tailwind CSS", "Node.Js", "PyTesseract", "Firebase", "OpenCV", "Numpy"],
     projectLink: "https://github.com/Kanishk3813/ai-manager",
-    additionalImages: ["/documents/sc_add.jpg", "/documents/sc_add1.jpg"]
+    additionalImages: ["/documents/sc_add.jpg", "/documents/sc_add1.jpg"],
+    pdfUrl: "#"
   },
   {
     name: "Prayagraj Mahakumbh Hackathon 2025",
@@ -114,11 +116,11 @@ const hackathons: Hackathon[] = [
     teamImage: "/documents/mahakumbh.jpg",
     techStack: ["Python", "OpenCV", "YoloV4", "Flask", "TensorFlow", "NumPy", "Pandas"],
     projectLink: "https://github.com/Kanishk3813/Crowd-Surveillance-System",
-    additionalImages: []
+    additionalImages: [],
+    pdfUrl: "/documents/mahakumbh.pdf"
   }
 ];
 
-// Workshops data with expanded information
 const workshops: Workshop[] = [
 {
     title: "Intel Unnati Industrial Training – 2024",
@@ -131,7 +133,8 @@ const workshops: Workshop[] = [
     topics: ["Sentiment Analysis", "Natural Language Processing", "Machine Learning", "Data Preprocessing", "Model Evaluation"],
     feedback: "An enriching experience that deepened my understanding of sentiment analysis and real-world NLP applications.",
     projectLink: "https://github.com/Kanishk3813/Intel_Sentiment_Analysis",
-    additionalImages: ["/documents/intel.jpg"]
+    additionalImages: ["/documents/intel.jpg"],
+    pdfUrl: "/documents/intel.pdf"
   },
 //   {
 //     title: "AI and ML Foundations",
@@ -245,19 +248,14 @@ const workshops: Workshop[] = [
 </style>
 
 <script>
-  // Ensure modal functionality works properly by adding any necessary global handlers
   document.addEventListener('DOMContentLoaded', () => {
-    // This helps ensure the React components are fully hydrated
     console.log("Achievements section initialized");
     
-    // Add an escape key handler for modals
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        // Find and close any open modals
         const modals = document.querySelectorAll('[role="dialog"]');
         modals.forEach(modal => {
           if (modal.classList.contains('fixed')) {
-            // Trigger close button click if present
             const closeBtn = modal.querySelector('button');
             if (closeBtn) closeBtn.click();
           }

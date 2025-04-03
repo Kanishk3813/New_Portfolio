@@ -79,17 +79,16 @@ const { title } = Astro.props;
       </ClickSparkWrapper>
     </div>
 
-    <script>
-      // Hide spinner and show content when page is fully loaded
-      window.addEventListener('load', () => {
-        document.getElementById('loading-spinner').classList.add('fade-out');
-        document.getElementById('main-content').classList.add('fade-in');
-        
-        setTimeout(() => {
-          document.getElementById('loading-spinner').style.display = 'none';
-        }, 800);
-      });
-    </script>
+      <script>
+        window.addEventListener('load', () => {
+          document.getElementById('loading-spinner').classList.add('fade-out');
+          document.getElementById('main-content').classList.add('fade-in');
+          
+          setTimeout(() => {
+            document.getElementById('loading-spinner').style.display = 'none';
+          }, 800);
+        });
+      </script>
   </body>
 </html>
 

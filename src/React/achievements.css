@@ -1,8 +1,183 @@
+/* Base styles for achievement cards */
+.achievement-card {
+  position: relative;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.achievement-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Text fade gradient for long content */
+.text-fade {
+  position: relative;
+}
+
+.text-fade::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2rem;
+  background: linear-gradient(to top, rgba(20, 20, 20, 0.9), transparent);
+  pointer-events: none;
+}
+
+/* Card grid layout */
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Card header with fixed height */
+.card-header {
+  min-height: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Card tags styling */
+.card-tag {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  margin: 0.125rem;
+  border-radius: 0.375rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--white-icon);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+/* Animation for description toggle */
+.description-content {
+  transition: max-height 0.3s ease;
+  overflow: hidden;
+}
+
+/* Animation for modal */
 @keyframes modalFadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-modalFadeIn {
+  animation: modalFadeIn 0.3s ease forwards;
+}
+
+/* Certificate badge styling */
+.certificate-badge {
+  background-color: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal styles */
+.modal-backdrop {
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: all 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .achievements-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
   
-  .animate-modalFadeIn {
-    animation: modalFadeIn 0.2s ease-out forwards;
+  .achievement-card {
+    min-height: 280px;
   }
+}
+
+/* Custom scrollbar for modal content */
+.modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: var(--sec);
+  border-radius: 3px;
+}
+
+/* Skill/tech tags hover effect */
+.card-tag:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+
+/* Button hover effects */
+.btn-primary {
+  background-color: var(--sec);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  border: 1px solid var(--white-icon-tr);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Image gallery in modal */
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.5rem;
+}
+
+.image-gallery-item {
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background-color: #0a0a0a;
+}
+
+.image-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.image-gallery-item:hover img {
+  transform: scale(1.05);
+}

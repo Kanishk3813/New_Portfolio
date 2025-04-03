@@ -69,7 +69,6 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
         });
     }, [currentIndex, words.length]);
 
-    // Handlers for manual mode (hover)
     const handleMouseEnter = (index: number) => {
         if (manualMode) {
             setLastActiveIndex(index);
