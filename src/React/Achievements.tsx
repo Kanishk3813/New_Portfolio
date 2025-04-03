@@ -57,14 +57,22 @@ const AchievementCard: React.FC<Props> = ({ type, data }) => {
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
 
   useEffect(() => {
+    const nav = document.getElementById("main-nav");
+    
     if (showModal) {
       document.body.style.overflow = "hidden";
+      // Hide the navbar when modal is open
+      if (nav) nav.style.display = "none";
     } else {
       document.body.style.overflow = "auto";
+      // Show the navbar when modal is closed
+      if (nav) nav.style.display = "";
     }
-
+  
     return () => {
       document.body.style.overflow = "auto";
+      // Ensure navbar is visible when component unmounts
+      if (nav) nav.style.display = "";
     };
   }, [showModal]);
 
