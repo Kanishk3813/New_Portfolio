@@ -51,6 +51,24 @@ interface Workshop {
   pdfUrl?: string;
 }
 
+interface Publication {
+  title: string;
+  authors: string;
+  journal: string;
+  date: string;
+  description: string;
+  image: string;
+  doi?: string;
+  pdfUrl?: string;
+  abstract?: string;
+  keywords?: string[];
+  citationCount?: number;
+  projectLink?: string;
+  additionalImages?: string[];
+  conferenceDetails?: string;
+  status?: 'Published' | 'Under Review' | 'Accepted';
+}
+
 const certificates: Certificate[] = [
   {
     title: "Oracle Cloud Infrastructure 2024 Certified Foundations Associate",
@@ -149,6 +167,24 @@ const workshops: Workshop[] = [
 //     additionalImages: ["/intel.png"]
 //   }
 ];
+
+const publications: Publication[] = [
+  {
+    title: "PlantPath: Deep Learning-Based Plant Pathogen Detection",
+    authors: "Kooturu Kanishk Reddy, Sujal Mangesh Limje, T. Y. J. Naga Malleswari & S. Ushasukhanya",
+    journal: "Lecture Notes in Networks and Systems, Springer",
+    date: "July 2025",
+    description: "Introduces PlantPath, a deep learning framework for universal plant pathogen detection across bacteria, fungi, pests, viruses, and healthy plants, achieving 98.27% accuracy using ResNet-50 on a dataset spanning 20 crop species.",
+    image: "/dataset-cover.jpg",
+    doi: "10.1007/978-981-96-3942-7_42",
+    abstract: "Plant diseases, caused by pathogens such as bacteria, fungi, viruses, and pests, pose significant threats to global agriculture and food security. Traditional detection methods are often slow, costly, and crop-specific. To address these limitations, we present PlantPath, a deep learning-based framework for universal pathogen detection. Leveraging a ResNet-50 architecture, PlantPath classifies images into five categories—bacteria, fungi, virus, pest, and healthy plants. Our dataset includes 8,000+ images per class covering 20 crop species. The model achieved an accuracy of 98.27%, outperforming conventional approaches. PlantPath demonstrates potential for scalable, rapid, and accurate pathogen identification, enabling farmers and researchers to enhance agricultural productivity and disease management.",
+    keywords: ["Plant Pathology", "Deep Learning", "Computer Vision", "ResNet-50", "Agriculture AI", "Plant Disease Detection"],
+    projectLink: "https://github.com/Kanishk3813/PlantPath",
+    conferenceDetails: "Proceedings of the Fourth International Conference on Computing and Communication Networks (ICCCN 2024), LNNS, Springer, July 2025",
+    status: "Published",
+  }
+];
+
 ---
 
 <section
@@ -210,6 +246,20 @@ const workshops: Workshop[] = [
         ))}
       </div>
     </div>
+
+    <!-- Publications Section -->
+<div class="mb-12">
+  <h3 class="text-2xl font-medium mb-6 border-l-4 border-[var(--sec)] pl-4">Research Publications</h3>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {publications.map((publication) => (
+      <AchievementCard 
+        client:load
+        type="publication" 
+        data={publication} 
+      />
+    ))}
+  </div>
+</div>
   </div>
 </section>
 

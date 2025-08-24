@@ -46,9 +46,27 @@ interface Workshop {
   pdfUrl?: string;
 }
 
+interface Publication {
+  title: string;
+  authors: string;
+  journal: string;
+  date: string;
+  description: string;
+  image: string;
+  doi?: string;
+  pdfUrl?: string;
+  abstract?: string;
+  keywords?: string[];
+  citationCount?: number;
+  projectLink?: string;
+  additionalImages?: string[];
+  conferenceDetails?: string;
+  status?: "Published" | "Under Review" | "Accepted";
+}
+
 interface Props {
-  type: "certificate" | "hackathon" | "workshop";
-  data: Certificate | Hackathon | Workshop;
+  type: "certificate" | "hackathon" | "workshop" | "publication";
+  data: Certificate | Hackathon | Workshop | Publication;
 }
 
 const AchievementCard: React.FC<Props> = ({ type, data }) => {
@@ -58,7 +76,7 @@ const AchievementCard: React.FC<Props> = ({ type, data }) => {
 
   useEffect(() => {
     const nav = document.getElementById("main-nav");
-    
+
     if (showModal) {
       document.body.style.overflow = "hidden";
       // Hide the navbar when modal is open
@@ -68,7 +86,7 @@ const AchievementCard: React.FC<Props> = ({ type, data }) => {
       // Show the navbar when modal is closed
       if (nav) nav.style.display = "";
     }
-  
+
     return () => {
       document.body.style.overflow = "auto";
       // Ensure navbar is visible when component unmounts
@@ -118,6 +136,8 @@ const AchievementCard: React.FC<Props> = ({ type, data }) => {
         return (data as Hackathon).description;
       case "workshop":
         return (data as Workshop).description;
+      case "publication":
+        return (data as Publication).description;
       default:
         return "";
     }
@@ -295,6 +315,107 @@ const AchievementCard: React.FC<Props> = ({ type, data }) => {
             <div className="flex justify-between items-center text-sm flex-wrap mt-auto">
               <p className="text-[var(--white-icon)]">{workshop.organizer}</p>
               <p className="text-[var(--white-icon)]">{workshop.date}</p>
+            </div>
+          </>
+        );
+
+      case "publication":
+        const pub = data as Publication;
+        return (
+          <>
+            <div className="flex items-start gap-4 mb-4">
+              <div className="h-16 w-16 flex-shrink-0 rounded-lg overflow-hidden bg-[#0a0a0a] flex items-center justify-center">
+                <img
+                  src={pub.image}
+                  alt={pub.title}
+                  className="max-h-12 max-w-full object-contain"
+                />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h4 className="text-xl font-medium mb-1 text-white break-words line-clamp-2">
+                  {pub.title}
+                </h4>
+                <p className="text-[var(--sec)] font-medium text-sm">
+                  {pub.status || "Published"} • {pub.journal}
+                </p>
+              </div>
+            </div>
+
+            <div className="mb-3">
+              <p className="text-[var(--white-icon)] text-sm mb-1">
+                <span className="font-medium">Authors:</span> {pub.authors}
+              </p>
+              {pub.citationCount !== undefined && (
+                <p className="text-[var(--white-icon)] text-sm">
+                  <span className="font-medium">Citations:</span>{" "}
+                  {pub.citationCount}
+                </p>
+              )}
+            </div>
+
+            <div
+              className={`relative overflow-hidden ${isDescriptionExpanded ? "" : "max-h-16"}`}
+            >
+              <p className="text-[var(--white-icon)] mb-3 break-words text-sm">
+                {pub.description}
+              </p>
+              {!isDescriptionExpanded &&
+                pub.description &&
+                pub.description.length > 100 && (
+                  <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-[#1414149c] to-transparent pointer-events-none"></div>
+                )}
+            </div>
+
+            {pub.description && pub.description.length > 100 && (
+              <button
+                onClick={toggleDescription}
+                className="text-[var(--sec)] hover:text-white text-sm mb-3 flex items-center gap-1"
+              >
+                {isDescriptionExpanded ? "Show less" : "Read more"}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className={`transform transition-transform ${isDescriptionExpanded ? "rotate-180" : ""}`}
+                >
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+            )}
+
+            <div className="flex justify-between items-center text-sm flex-wrap mt-auto">
+              <p className="text-[var(--white-icon)]">{pub.date}</p>
+              {pub.doi && (
+                <a
+                  href={`https://doi.org/${pub.doi}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--sec)] hover:text-white transition duration-300 ease-in-out flex items-center gap-1"
+                >
+                  DOI
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </a>
+              )}
             </div>
           </>
         );
@@ -756,6 +877,182 @@ const AchievementCard: React.FC<Props> = ({ type, data }) => {
           </div>
         );
 
+      case "publication":
+        const publication = data as Publication;
+        return (
+          <div className="flex flex-col md:flex-row gap-6">
+            <div className="w-full md:w-2/5">
+              <div className="rounded-lg overflow-hidden aspect-[4/3] bg-[#0a0a0a] mb-4 flex items-center justify-center">
+                <img
+                  src={publication.image}
+                  alt={publication.title}
+                  className="max-h-full max-w-full object-contain"
+                />
+              </div>
+
+              {publication.additionalImages &&
+                publication.additionalImages.length > 0 && (
+                  <div className="grid grid-cols-2 gap-2">
+                    {publication.additionalImages.map((img, index) => (
+                      <div
+                        key={index}
+                        className="rounded-lg overflow-hidden bg-[#0a0a0a] aspect-video flex items-center justify-center"
+                      >
+                        <img
+                          src={img}
+                          alt={`Figure ${index + 1}`}
+                          className="max-h-full max-w-full object-contain"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+            </div>
+
+            <div className="w-full md:w-3/5">
+              <h3 className="text-2xl font-medium mb-2 text-white leading-tight">
+                {publication.title}
+              </h3>
+
+              <div className="mb-4">
+                <p className="text-[var(--sec)] font-medium mb-1">
+                  {publication.status || "Published"} • {publication.date}
+                </p>
+                <p className="text-[var(--white-icon)] mb-1">
+                  <span className="font-medium">Journal:</span>{" "}
+                  {publication.journal}
+                </p>
+                <p className="text-[var(--white-icon)] mb-1">
+                  <span className="font-medium">Authors:</span>{" "}
+                  {publication.authors}
+                </p>
+                {publication.conferenceDetails && (
+                  <p className="text-[var(--white-icon)] mb-1">
+                    <span className="font-medium">Conference:</span>{" "}
+                    {publication.conferenceDetails}
+                  </p>
+                )}
+                {publication.citationCount !== undefined && (
+                  <p className="text-[var(--white-icon)]">
+                    <span className="font-medium">Citations:</span>{" "}
+                    {publication.citationCount}
+                  </p>
+                )}
+              </div>
+
+              {publication.abstract && (
+                <div className="mb-4">
+                  <h4 className="text-lg font-medium mb-2 text-white">
+                    Abstract
+                  </h4>
+                  <p className="text-[var(--white-icon)] text-sm leading-relaxed">
+                    {publication.abstract}
+                  </p>
+                </div>
+              )}
+
+              {publication.keywords && publication.keywords.length > 0 && (
+                <div className="mb-4">
+                  <h4 className="text-lg font-medium mb-2 text-white">
+                    Keywords
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {publication.keywords.map((keyword, index) => (
+                      <span
+                        key={index}
+                        className="px-2 py-1 text-sm bg-[#ffffff10] rounded-md text-[var(--white-icon)]"
+                      >
+                        {keyword}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="flex flex-wrap gap-3 mt-6">
+                {publication.pdfUrl && (
+                  <a
+                    href={publication.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--sec)] text-white font-medium transition-all hover:bg-opacity-90"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1.2em"
+                      height="1.2em"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
+                      <line x1="16" y1="13" x2="8" y2="13"></line>
+                      <line x1="16" y1="17" x2="8" y2="17"></line>
+                      <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    Read Paper
+                  </a>
+                )}
+
+                {publication.doi && (
+                  <a
+                    href={`https://doi.org/${publication.doi}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#ffffff10] text-white font-medium transition-all hover:bg-[#ffffff20]"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1.2em"
+                      height="1.2em"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path>
+                    </svg>
+                    View DOI
+                  </a>
+                )}
+
+                {publication.projectLink && (
+                  <a
+                    href={publication.projectLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 rounded-lg border border-[var(--white-icon-tr)] text-white font-medium transition-all hover:bg-[#ffffff10]"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1.2em"
+                      height="1.2em"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <polyline points="9 21 3 21 3 15"></polyline>
+                      <line x1="21" y1="3" x2="14" y2="10"></line>
+                      <line x1="3" y1="21" x2="10" y2="14"></line>
+                    </svg>
+                    View Code
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        );
+
       default:
         return null;
     }
@@ -772,7 +1069,7 @@ const AchievementCard: React.FC<Props> = ({ type, data }) => {
 
         <div
           onClick={openModal}
-          className="mt-4 flex items-center gap-1 text-[var(--sec)] hover:text-white transition duration-300 ease-in-out text-sm cursor-pointer z-[1] mt-auto"
+          className="mt-4 flex items-center gap-1 text-[var(--sec)] hover:text-white transition duration-300 ease-in-out text-sm cursor-pointer z-[1]"
           aria-label="View more details"
         >
           View more

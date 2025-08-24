@@ -1,5 +1,5 @@
 ---
-import  ImageMetadata  from "astro:assets";
+import ImageMetadata from "astro:assets";
 import svgl from "../../public/svgl.png";
 import Intel from "../../public/intel.png";
 import Parse from "../../public/parseflow.png";
@@ -8,53 +8,127 @@ import Nptel from "../../public/nptel.png";
 import TaskX from "../../public/taskx.png";
 import ProjectCard from "../React/ProjectCard";
 import FuzzyText from "../React/FuzzyText";
+
 const hoverIntensity = 0.5;
 const enableHover = true;
 
 interface Project {
   title: string;
+  description: string;
   image: ImageMetadata;
   link: string;
   preview: string;
   status: string;
+  technologies: string[];
+  features: string[];
+  metrics?: {
+    label: string;
+    value: string;
+  }[];
+  category: string;
 }
 
 const projects: Project[] = [
   {
     title: "NptelOverflow",
+    description: "A comprehensive Q&A platform tailored for NPTEL learners, providing a centralized space for course-related discussions and knowledge sharing.",
     image: Nptel as ImageMetadata,
     link: "#",
     preview: "https://www.npteloverflow.in/",
-    status: "Developed",
+    status: "Live",
+    category: "Education Platform",
+    technologies: ["Next.js", "TypeScript", "Node.js", "Firebase", "Python"],
+    features: [
+      "Question & Answer system with voting",
+      "Forum for open discussions",
+      "Customizable user profiles",
+      "Leaderboard system with gamification",
+      "Course-specific categorization"
+    ],
+    metrics: [
+      { label: "User Engagement", value: "+40%" },
+      { label: "User Retention", value: "+30%" },
+      { label: "User Contributions", value: "+35%" }
+    ]
   },
   {
     title: "TaskX",
+    description: "An intelligent task management system that helps users prioritize, track, and complete tasks with automated reminders and productivity insights.",
     image: TaskX as ImageMetadata,
     link: "https://github.com/Kanishk3813/TaskX",
     preview: "https://task-x-rouge.vercel.app/",
-    status: "Under Development",
+    status: "In Development",
+    category: "Productivity Tool",
+    technologies: ["React", "Node.js", "MongoDB", "Express", "TypeScript"],
+    features: [
+      "Smart task prioritization",
+      "Automated reminders and notifications",
+      "Progress tracking and analytics",
+      "Team collaboration features",
+      "Productivity insights dashboard"
+    ]
   },
   {
     title: "CapitalCue - AI Branch Manager",
+    description: "An OCR-driven loan screening platform with an AI video assistant that automates document processing and loan eligibility assessment.",
     image: Capital as ImageMetadata,
     link: "https://github.com/Kanishk3813/ai-manager",
     preview: "https://capitalcue-drab.vercel.app/",
-    status: "On Development",
+    status: "In Development",
+    category: "FinTech Solution",
+    technologies: ["Next.js", "React", "OpenCV", "Tesseract OCR", "Python"],
+    features: [
+      "AI-powered video assistant",
+      "Automated document processing",
+      "OCR for Aadhaar, PAN, income documents",
+      "Rule-based eligibility engine",
+      "Instant decision processing"
+    ],
+    metrics: [
+      { label: "Loan Processing Time", value: "-50%" },
+      { label: "OCR Accuracy", value: "95%+" },
+      { label: "Decision Speed", value: "<3 seconds" }
+    ]
   },
   {
     title: "Intel Review Analyzer",
+    description: "A BERT-based sentiment analysis tool that processes product reviews to provide insights through data visualizations and automated analysis.",
     image: Intel as ImageMetadata,
     link: "https://github.com/Kanishk3813/Intel_Sentiment_Analysis",
     preview: "https://reviewanalyzer.vercel.app/",
-    status: "Developed",
+    status: "Live",
+    category: "ML Application",
+    technologies: ["React", "Python", "Flask", "BERT", "Matplotlib", "Axios"],
+    features: [
+      "Fine-tuned BERT sentiment classifier",
+      "Batch CSV upload processing",
+      "Word clouds and sentiment trends",
+      "Downloadable JSON reports",
+      "Real-time analysis dashboard"
+    ],
+    metrics: [
+      { label: "Model Accuracy", value: "92%" },
+      { label: "Manual Review Time", value: "-40%" },
+      { label: "Analysis Throughput", value: "3x faster" }
+    ]
   },
   {
     title: "ParseFlow",
+    description: "A powerful data parsing and transformation tool that simplifies complex data workflows with an intuitive interface and automated processing.",
     image: Parse as ImageMetadata,
     link: "https://github.com/Kanishk3813/ParseFlow",
     preview: "https://parseflow.vercel.app/",
-    status: "Developed",
-  },
+    status: "Live",
+    category: "Data Processing",
+    technologies: ["React", "Node.js", "Python", "Express", "Firebase"],
+    features: [
+      "Drag-and-drop data transformation",
+      "Multiple file format support",
+      "Automated data validation",
+      "Custom parsing rules",
+      "Export in various formats"
+    ]
+  }
 ];
 ---
 
@@ -62,9 +136,9 @@ const projects: Project[] = [
   id="projects"
   class="py-12 border-t border-[#ffffff10] text-[var(--white)]"
 >
-  <div class="max-w-5xl mx-auto">
+  <div class="max-w-7xl mx-auto px-4">
     <h2 class="text-lg text-[var(--sec)] mb-2 shiny-sec">My work</h2>
-    <div class="mb-8">
+    <div class="mb-12">
       <FuzzyText 
         client:only="react"
         baseIntensity={0.2} 
@@ -74,31 +148,37 @@ const projects: Project[] = [
         color="#ffffff"
         text="Projects"
       />
+      <p class="text-[var(--white-icon)] mt-4 max-w-2xl">
+        A collection of projects showcasing my expertise in full-stack development, 
+        machine learning, and innovative problem-solving across various domains.
+      </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
       {projects.map((project) => (
         <ProjectCard client:only {...project} />
       ))}
     </div>
 
-    <a
-      target="_blank"
-      href="https://github.com/Kanishk3813?tab=repositories"
-      aria-label="GitHub"
-      class="w-full flex items-center justify-center gap-2 mt-9 text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-[var(--white-icon-tr)] p-3 rounded-full bg-[#1414149c] hover:bg-[var(--white-icon-tr)]"
-    >
-      <span class="md:text-lg text-md">More projects on</span>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        class="size-6"
+    <div class="text-center">
+      <a
+        target="_blank"
+        href="https://github.com/Kanishk3813?tab=repositories"
+        aria-label="GitHub"
+        class="inline-flex items-center justify-center gap-3 px-8 py-4 text-[var(--white-icon)] hover:text-white transition-all duration-300 ease-in-out border border-[var(--white-icon-tr)] rounded-full bg-[#1414149c] hover:bg-[var(--white-icon-tr)] hover:scale-105 group"
       >
-        <path
-          d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"
-        ></path>
-      </svg>
-    </a>
+        <span class="text-lg font-medium">Explore More Projects</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="size-6 group-hover:translate-x-1 transition-transform duration-300"
+        >
+          <path
+            d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"
+          ></path>
+        </svg>
+      </a>
+    </div>
   </div>
 </section>
